@@ -1,0 +1,173 @@
+/* -------------------------
+   Base
+-------------------------- */
+
+body {
+  font-family: sans-serif;
+  background-color: #121212;
+  margin: 0;
+}
+
+/* -------------------------
+   Font
+-------------------------- */
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/fonts/PPNeueMontreal-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* -------------------------
+   Typography
+-------------------------- */
+
+h3 {
+  font-family: 'PP Neue Montreal', helvetica, sans-serif;
+  font-size: 40px;
+  padding: 20px 40px 7px 40px;
+  color: #f1f1f1;
+  font-weight: 400;
+}
+
+p {
+  font-family: 'PP Neue Montreal', helvetica, sans-serif;
+  font-size: 20px;
+  padding: 5px 40px;
+  color: #f1f1f1;
+  font-weight: 400;
+}
+
+a {
+  color: #f1f1f1;
+  text-decoration: underline;
+}
+
+/* -------------------------
+   Carousel container
+-------------------------- */
+
+
+.photo-carousel {
+  margin: clamp(24px, 6vw, 60px);
+  position: relative;
+  width: min(90%, 1000px);
+  aspect-ratio: 16 / 9;
+  max-height: 600px;
+   cursor: pointer;
+}
+
+.bio {
+  margin: 2rem;
+}
+
+/* Remove margin on mobile */
+@media (max-width: 800px) {
+  .bio {
+    margin: 0;
+  }
+}
+
+
+.header {
+  padding-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header img {
+  width: clamp(200px, 20vw, 280px);
+}
+
+/* Hidden by default (desktop & tablet) */
+.mobile-only {
+  display: none;
+}
+
+/* Shown only on mobile */
+@media (max-width: 800px) {
+  .mobile-only {
+    display: block;
+  }
+}
+
+
+/* -------------------------
+   Card stacking
+-------------------------- */
+
+.carousel-card {
+  position: absolute;
+  inset: 0;
+  pointer-events: none; /* disable hover by default */
+}
+
+/* ✅ ONLY the top card can be hovered */
+.carousel-card:nth-child(1) {
+  pointer-events: auto;
+  z-index: 4;
+}
+
+.carousel-card:nth-child(2) { z-index: 3; }
+.carousel-card:nth-child(3) { z-index: 2; }
+.carousel-card:nth-child(4) { z-index: 1; }
+
+/* -------------------------
+   Card image
+-------------------------- */
+
+.carousel-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  transition: transform 0.4s ease;
+}
+
+/* Visual offsets (purely cosmetic now) */
+.carousel-card:nth-child(1) img {
+  transform: translate(0, 0) rotate(0deg);
+}
+
+.carousel-card:nth-child(2) img {
+  transform: translate(8px, 6px) rotate(-3deg);
+}
+
+.carousel-card:nth-child(3) img {
+  transform: translate(16px, 12px) rotate(3deg);
+}
+
+.carousel-card:nth-child(4) img {
+  transform: translate(24px, 18px) rotate(-5deg);
+}
+
+/* -------------------------
+   Info overlay
+-------------------------- */
+
+.card-info {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: 0.3s ease;
+}
+
+/* ✅ Reveals ONLY on top card */
+.carousel-card:nth-child(1):hover .card-info {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.site-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
